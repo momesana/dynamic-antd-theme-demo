@@ -7,6 +7,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "webpack serve --open",
+    "build": "webpack build --mode=production",
     "format": "prettier -w webpack.config.js **/*.js **/*.ts?"
   },
   "dependencies": {

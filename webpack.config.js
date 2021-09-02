@@ -4,10 +4,8 @@ const path = require('path');
 
 const devPort = 3000;
 
-const mode = "development";
 
 module.exports = {
-  mode,
   devtool: 'eval-source-map',
   output: {
     path: __dirname + '/dist',
@@ -49,7 +47,6 @@ module.exports = {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                env: mode,
                 javascriptEnabled: true,
               },
               sourceMap: true,
@@ -66,7 +63,6 @@ module.exports = {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                env: mode,
                 javascriptEnabled: true,
               },
               sourceMap: true,
