@@ -3,17 +3,25 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const devPort = 3000;
 
+const lessLoader = {
+  loader: 'less-loader',
+  options: {
+    lessOptions: {
+      javascriptEnabled: true
+    }
+  }
+};
+
 module.exports = {
-  devtool: 'eval-source-map',
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/dist'
   },
   devServer: {
     hot: true,
-    port: devPort,
+    port: devPort
   },
   entry: {
-    main: './src/index.tsx',
+    main: './src/index.tsx'
   },
   module: {
     rules: [
@@ -23,58 +31,39 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-typescript", '@babel/preset-react', '@babel/preset-env'],
-            },
-          },
+              presets: ['@babel/preset-typescript', '@babel/preset-react', '@babel/preset-env']
+            }
+          }
         ],
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.theme\.less$/i,
+        test: /\.theme\.(less|css)$/i,
         use: [
           {
             loader: 'style-loader',
-            options: { injectType: 'lazyStyleTag' },
+            options: { injectType: 'lazyStyleTag' }
           },
           'css-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-              sourceMap: true,
-            },
-          },
-        ],
+          lessLoader
+        ]
       },
       {
-        test: /(?<!\.theme)\.less$/,
+        test: /\.(less|css)$/,
+        exclude: /\.theme\.(less|css)$/i,
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-    ],
+          lessLoader
+        ]
+      }
+    ]
   },
   plugins: [new ReactRefreshWebpackPlugin(), new HtmlWebpackPlugin({
-    title: "Dynamically switch themes in Antd",
-    template: "index.html",
+    title: 'Dynamically switch themes in Antd',
+    template: 'index.html'
   })],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.jsx'],
-  },
+    extensions: ['.tsx', '.ts', '.js', '.jsx']
+  }
 };
