@@ -1,9 +1,7 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
 
 const devPort = 3000;
-
 
 module.exports = {
   devtool: 'eval-source-map',

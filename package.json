@@ -6,7 +6,7 @@
   "author": "Mehdi Salem",
   "license": "ISC",
   "scripts": {
-    "dev": "webpack serve --open",
+    "dev": "webpack serve --open --mode=development",
     "build": "webpack build --mode=production",
     "format": "prettier -w webpack.config.js **/*.js **/*.ts?"
   },
